@@ -3,9 +3,9 @@ services:
         build:
                 image: openjdk:8-jdk-alpine
                 depends_on:
-                        - db
+                        - testdb
                 links:
-                        - 'db:db'
+                        - 'testdb:db'
                 user: "${DOCKER_COMPOSE_RUN_AS_USER}"
                 working_dir: /app
                 volumes:
@@ -36,8 +36,23 @@ services:
 
         db:
                 image: mysql
+                healthcheck:
+                  test: ["CMD-SHELL", 'mysqladmin ping']
+                  interval: 10s
+                  timeout: 2s
+                  retries: 10
                 volumes:
                         - mysql-data:/var/lib/mysql
+                environment:
+                        - MYSQL_ROOT_PASSWORD
+
+        testdb:
+                image: mysql
+                healthcheck:
+                  test: ["CMD-SHELL", 'mysqladmin ping']
+                  interval: 10s
+                  timeout: 2s
+                  retries: 10
                 environment:
                         - MYSQL_ROOT_PASSWORD
 

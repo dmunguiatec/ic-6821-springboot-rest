@@ -27,6 +27,13 @@ bootRun {
 	jvmArgs = ["-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"]
 }
 
+test {
+	// display the following test events
+	testLogging {
+		events "PASSED", "FAILED", "SKIPPED"
+	}
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
