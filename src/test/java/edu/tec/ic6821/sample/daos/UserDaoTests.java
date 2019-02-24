@@ -20,7 +20,7 @@ public class UserDaoTests {
     private UserDao userDao;
 
     @Test
-    public void whenCreate_thenReturnUserWithGeneratedId() {
+    public void givenUser_whenCreate_thenReturnUserWithGeneratedId() {
         // given
         User user = new User("someuser", "123queso");
 
@@ -34,7 +34,7 @@ public class UserDaoTests {
     }
 
     @Test
-    public void whenExistsByUsername_thenReturnTrue() {
+    public void givenExistingUsername_whenExistsByUsername_thenReturnTrue() {
         // given
         String username = "user" + new Date().getTime();
         User user = userDao.create(new User(username, "123queso"));
@@ -47,7 +47,7 @@ public class UserDaoTests {
     }
 
     @Test
-    public void whenNotExistsByUsername_thenReturnFalse() {
+    public void givenNonExistingUsername_whenExistsByUsername_thenReturnFalse() {
         // given
         String username = "thisUsernameIsNotInTheDatabase";
 
@@ -59,7 +59,7 @@ public class UserDaoTests {
     }
 
     @Test
-    public void whenFindByUsername_thenReturnUser() {
+    public void givenExistingUser_whenFindByUsername_thenReturnUser() {
         // given
         String username = "user" + new Date().getTime();
         String password = "123queso";
@@ -72,7 +72,7 @@ public class UserDaoTests {
     }
 
     @Test
-    public void whenFindByUsername_thenReturnEmpty() {
+    public void givenNonExistingUsername_whenFindByUsername_thenReturnEmpty() {
         // given
         String username = "thisUsernameIsNotInTheDatabase";
 
