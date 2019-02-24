@@ -61,7 +61,7 @@ public class UserServiceTests {
     }
 
     @Test
-    public void whenCreateExistingUser_thenReturnEmpty() {
+    public void givenExistingUsername_whenCreate_thenReturnEmpty() {
         // given
         String username = "someexistinguser";
         String password = "123queso";
@@ -74,7 +74,7 @@ public class UserServiceTests {
     }
 
     @Test
-    public void whenCreateNonExistingUser_thenReturnNewUser() {
+    public void givenNewUsername_whenCreate_thenReturnNewUser() {
         // given
         String username = "somenewuser";
         String password = "123queso";
