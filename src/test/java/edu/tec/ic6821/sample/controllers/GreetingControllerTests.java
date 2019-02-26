@@ -2,8 +2,6 @@ package edu.tec.ic6821.sample.controllers;
 
 import edu.tec.ic6821.sample.config.security.JwtAuthEntryPoint;
 import edu.tec.ic6821.sample.config.security.JwtProvider;
-import edu.tec.ic6821.sample.model.User;
-import edu.tec.ic6821.sample.services.UserService;
 import edu.tec.ic6821.sample.services.impl.CustomUserDetailsService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,16 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Collections;
-import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
