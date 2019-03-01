@@ -89,7 +89,4 @@ public class UserServiceTests {
         assertThat(newUser).hasFieldOrPropertyWithValue("id", 42L);
         assertThat(passwordEncoder.matches(password, newUser.getPassword())).isTrue();
     }
-
-
-
 }

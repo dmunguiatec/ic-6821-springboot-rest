@@ -11,6 +11,7 @@ services:
                 volumes:
                         - .:/app
                         - gradle-dist:/root/.gradle
+                command: sh -c './wait-for db:3306 -- ./gradlew clean build'
                 environment:
                         - APP_DB_PWD
                         - APP_AUTH_JWT_SECRET
@@ -29,18 +30,13 @@ services:
                 ports:
                         - '8080:8080'
                         - '5005:5005'
-                command: ./gradlew bootRun
+                command: sh -c './wait-for db:3306 -- ./gradlew bootRun'
                 environment:
                         - APP_DB_PWD
                         - APP_AUTH_JWT_SECRET
 
         db:
                 image: mysql
-                healthcheck:
-                  test: ["CMD-SHELL", 'mysqladmin ping']
-                  interval: 15s
-                  timeout: 5s
-                  retries: 10
                 volumes:
                         - mysql-data:/var/lib/mysql
                 environment:
@@ -48,11 +44,6 @@ services:
 
         testdb:
                 image: mysql
-                healthcheck:
-                  test: ["CMD-SHELL", "mysql --protocol=socket -hlocalhost -uroot -p$$MYSQL_ROOT_PASSWORD -e 'SELECT 1'"]
-                  interval: 15s
-                  timeout: 5s
-                  retries: 10
                 environment:
                         - MYSQL_ROOT_PASSWORD
 
